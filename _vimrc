@@ -1,9 +1,26 @@
+" Vundle{{{
+"""""""""""""""""""""""""""""""""""Vundle setting""""""""""""""""""
 set nocompatible
-source $VIMRUNTIME/vimrc_example.vim
-source $VIMRUNTIME/mswin.vim
-behave mswin
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#begin()
 
+Bundle 'gmarik/vundle.vim'
+Bundle 'easymotion/vim-easymotion'
+Plugin 'Lokaltog/vim-powerline'
+"Plugin 'https://github.com/Lokaltog/vim-powerline.git'
+Plugin 'vimwiki/vimwiki'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'vim-scripts/AutoComplPop'
+Plugin 'vim-scripts/Align'
 
+call vundle#end()
+
+filetype plugin indent on
+" }}}
+
+set nocompatible
 
 set diffexpr=MyDiff()
 function! MyDiff()
@@ -35,16 +52,6 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>:nohl<cr>
 nnoremap <leader>8  *
 
-
-
-let maplocalleader = "+"
-" augroup filetype
-"     autocmd!
-"     autocmd FileType verilog nnoremap <buffer> <localleader>c I//<est>
-" augroup END
-
-" au GUIEnter * simalt ~x
-" colorscheme default 
 """""""""""""""""""""""""""""""set colorscheme"""""""""""""""""""""""""""""""""""""""""""
 syntax enable
 set background=dark
@@ -108,11 +115,12 @@ set autochdir
 let g:vinManagerWindowLayout='FileExplorer|TagList'
 nmap wm:WMToggle <cr>
 
-"MiniBufExplorer
+"MiniBufExplorer {{{
 let g:miniBufExplMapWindowNavVim=1
 let g:miniBufExplMapWindowNavArrows=1
 let g:miniBufExplMapCTabSwitchBufs=1
 let g:miniBufExplModeSelTarget=1
+"}}}
 
 "窗口管理
 set tags=tags
@@ -120,25 +128,12 @@ set tags=tags
 "自动改变当前工作路径
 set autochdir
 
-"Toggle Menu and Toolbar
-"隐藏与打开任务栏
-
-"func SetHeader() "如果文件类型为.sh文件 
-""if &filetype == 'verilog'        
-"    call append(0, "////////////////////////////////////////////////////////////////////////////////////////////////////")         
-"    call append(1, "// File Name: ".expand("%"))         
-"    call append(2, "// Author: Chenkai6")         
-"    call append(3, "// mail: chenkai6@hikvision.com.cn")         
-"    call append(4, "// Created Time: ".strftime("%c"))
-"    call append(5, "// Last Change Time: ".strftime("%c"))
-"    call append(6, "// Function Discription :")    
-"    call append(7, "////////////////////////////////////////////////////////////////////////////////////////////////////")         
-""endif
-"endfunc 
-
 inoremap jk <Esc>:w<CR>
+if has("win32")
 unmap <C-V>
 unmap <C-A>
+endif
+
 " inoremap <esc> <nop>
 nnoremap <left> <nop>
 nnoremap <right> <nop>
@@ -175,44 +170,21 @@ augroup ftgroup
 augroup END
 
 
+
+if has("win32")
 "Grep{{{
     let Grep_Path = '"D:\Program Files (x86)\GnuWin32\bin\grep.exe"'
     let Grep_Find_Path = '"D:\Program Files (x86)\GnuWin32\bin\find.exe"'
     let Grep_Xargs_Path = '"D:\Program Files (x86)\GnuWin32\bin\xargs.exe"'
 "}}}
 "
+endif
 
 set cursorline
 hi! CursorLine cterm=NONE ctermfg=black ctermbg=green
-"set shell=\"D:\cygwin\Cygwin.bat"\ -f
-set shell=\"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe"\ -f
-"set shell=\"D:\Program\ Files\ (x86)\Git\bin\sh.exe"\ -f
-"
 
 """""""""""""""""""""""""""  AutoComplPop"""""""""""""""""""""""""""""
-"AutoComplPop{
+"AutoComplPop{{{
     let g:acp_ignorecaseOption = 0
-"}
-"
-"
-"
-"
-"
-"""""""""""""""""""""""""""""""""""Vundle setting""""""""""""""""""
-set nocompatible
-filetype off
-set rtp+=$VIMRUNTIME/bundle/vundle/
-set path='$VIMRUNTIME/bundle/'
-call vundle#begin(path)
-Bundle 'gmarik/vundle.vim'
+"}}}
 
-Bundle 'tpope/vim-easymotion'
-Plugin 'Lokaltog/vim-powerline'
-"Plugin 'https://github.com/Lokaltog/vim-powerline.git'
-Plugin 'vimwiki'
-Plugin 'tomasr/molakai'
-
-Plugin 'taglist.vim'
-call vundle#end()
-
-filetype plugin indent on

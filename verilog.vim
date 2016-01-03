@@ -377,6 +377,7 @@ if(find_file == True):
         if(after_module):
         # 解析当前行
             # 另一种解决方案:1. 获取注释;2. 去掉无效字符; 3. 判断parameter或port; 4. 添加对应的list
+	    # a better solution, find the first word, match to parameter/input/output/inout
             parameter_start = parameter_start_pattern.match(line)
             parameter_end   = parameter_end_pattern.match(line)
             ports_start     = port_start_pattern.match(line)
